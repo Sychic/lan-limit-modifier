@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class MixinIntegratedServer {
     @ModifyReturnValue(method = "getMaxPlayers", at = @At("RETURN"))
     private int modifyMaxPlayers(int original) {
-        if (!System.getProperty("lanlimit.value").isEmpty()) {
+        if (System.getProperty("lanlimit.value") != null) {
             return Integer.parseInt(System.getProperty("lanlimit.value"));
         }
         return original;
